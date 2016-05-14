@@ -112,7 +112,7 @@ var _hmt = _hmt || [];
   <div class="container">
   	<div class="content">
     	 <div class="page-header logo">
-  <h1>王健个人博客<span class="blink-fast">∎</span></h1>
+  <h1>WANG JIAN BLOG...<span class="blink-fast">∎</span></h1>
 </div>
 
 <div class="row page">
@@ -136,7 +136,7 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2016/05/14/demo/" >demo</a>
+			<a href="/2016/05/14/springboot1/" >Spring Boot Tutorial 1</a>
 		</h3>
 		</div>
 	<div class="col-md-4">
@@ -150,38 +150,12 @@ var _hmt = _hmt || [];
   <div class="row">
 	
 	
-		
-	
-	</div>
-  <a type="button" href="/2016/05/14/demo/#more" class="btn btn-default more">阅读此文</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2016/05/13/first-blog/" >第一篇博客</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2016-05-13  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>纪念一下，第一次使用Hexo博客系统。</p>
+		<h2 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="@SpringBootApplication"></a>@SpringBootApplication</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootApplication &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * Exclude specific auto-configuration classes such that they will never be applied.</span><br><span class="line">     * <span class="doctag">@return</span> the classes to exclude</span><br><span class="line">     */</span></span><br><span class="line">    Class&lt;?&gt;[] exclude() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@Configuration : 表示Application作为sprig配置文件存在<br>@EnableAutoConfiguration: 启动spring boot内置的自动配置<br>@ComponentScan : 扫描bean，路径为Application类所在package以及package下的子路径</p>
 
 	
 	</div>
-  <a type="button" href="/2016/05/13/first-blog/#more" class="btn btn-default more">阅读此文</a>
+  <a type="button" href="/2016/05/14/springboot1/#more" class="btn btn-default more">阅读此文</a>
 </div>
 
 		
@@ -205,7 +179,8 @@ var _hmt = _hmt || [];
   <div class="row">
 	
 	
-		<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+		<p>个人很喜欢<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>,这篇文章为<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>初始化的教程，我保留了下来。希望能够帮助看到这篇文章，并对<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>有兴趣的朋友。go！</p>
+<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
@@ -256,6 +231,20 @@ var _hmt = _hmt || [];
 			
 		
 			
+	<div class="widget">
+		<h4>标签云</h4>
+		<ul class="tag_box inline list-unstyled">		
+		
+			<li><a href="/tags/spring-boot-spring/">spring boot, spring<span>0</span></a></li>
+		
+			<li><a href="/tags/spring-boot-spring/">spring boot,spring<span>0</span></a></li>
+		
+			<li><a href="/tags/spring-boot/">spring boot<span>1</span></a></li>
+		
+		 
+		</ul>
+	</div>
+
 
 		
 			
@@ -264,11 +253,7 @@ var _hmt = _hmt || [];
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2016/05/14/demo/" ><i class="fa fa-file-o"></i>demo</a>
-      </li>
-    
-      <li>
-        <a href="/2016/05/13/first-blog/" ><i class="fa fa-file-o"></i>第一篇博客</a>
+        <a href="/2016/05/14/springboot1/" ><i class="fa fa-file-o"></i>Spring Boot Tutorial 1</a>
       </li>
     
       <li>
@@ -284,13 +269,9 @@ var _hmt = _hmt || [];
 	<h4>链接</h4>
 	<ul class="blogroll list-unstyled">
 	
-		<li><i class="fa fa-github"></i><a href="https://github.com/wzpan/hexo-theme-freemind" title="Freemind's Github repository." target="_blank"]);">Freemind</a></li>
+		<li><i class="fa fa-qq"></i><a href="tencent://message/?uin=928647866&Site=928647866&Menu=yes" title="技术交流" target="_blank"]);">928647866</a></li>
 	
-		<li><i class="fa fa-github"></i><a href="https://github.com/kristopolous/BOOTSTRA.386" title="BOOTSTRA.386's Github repository." target="_blank"]);">BOOTSTRA.386</a></li>
-	
-		<li><i class="fa fa-github"></i><a href="https://github.com/blackshow/hexo-theme-freemind.386" title="Freemind.386's Github repository." target="_blank"]);">Freemind.386</a></li>
-	
-		<li><i class="fa fa-github"></i><a href="http://www.github.com/blackshow" title="My Github account." target="_blank"]);">My Github</a></li>
+		<li><i class="fa fa-envelope-o"></i><a href="mailto:wangjiantx2@163.com" title="个人邮箱" target="_blank"]);">wangjiantx2@163.com</a></li>
 	
 	</ul>
 </div>
