@@ -136,6 +136,56 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
+			<a href="/2016/05/17/springboot4/" >Spring Boot Tutorial 3 (多环境配置)</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2016-05-17  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h2 id="多环境配置"><a href="#多环境配置" class="headerlink" title="多环境配置"></a>多环境配置</h2><p>我们在开发Spring Boot应用时，通常同一套程序会被应用和安装到几个不同的环境，比如：开发、测试、生产等。其中每个环境的数据库地址、服务器端口等等配置都会不同，如果在为不同环境打包时都要频繁修改配置文件的话，那必将是个非常繁琐且容易发生错误的事。</p>
+<p>对于多环境的配置，各种项目构建工具或是框架的基本思路是一致的，通过配置多份不同环境的配置文件，再通过打包命令指定需要打包的内容之后进行区分打包，Spring Boot也不例外，或者说更加简单。</p>
+<blockquote>
+<p>在Spring Boot中多环境配置文件名需要满足<a href="">application-{profile}.properties</a>的格式，其中<a href="">{profile}</a> 对应你的环境标识，比如：</p>
+<ul>
+<li>application-dev.properties：开发环境</li>
+<li>application-test.properties：测试环境</li>
+<li>application-prod.properties：生产环境</li>
+</ul>
+</blockquote>
+<p>至于哪个具体的配置文件会被加载，需要在application.properties文件中通过spring.profiles.active属性来设置，其值对应{profile}值。</p>
+<blockquote>
+<p>如：<a href="">spring.profiles.active=test</a>就会加载<a href="">application-test.properties</a>配置文件内容</p>
+</blockquote>
+<p>application.properties设置</p>
+<blockquote>
+<p>spring.profiles.active=dev 默认以dev环境设置</p>
+<ul>
+<li>java -jar xxx.jar 默认的开发环境（dev）</li>
+<li>java -jar xxx.jar –spring.profiles.active=test 测试环境的配置（test）</li>
+<li>java -jar xxx.jar –spring.profiles.active=prod 生产环境的配置（prod）</li>
+</ul>
+</blockquote>
+
+	
+	</div>
+  <a type="button" href="/2016/05/17/springboot4/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
 			<a href="/2016/05/17/springboot3/" >Spring Boot Tutorial 3 (使用@Async实现异步调用)</a>
 		</h3>
 		</div>
@@ -360,6 +410,10 @@ var _hmt = _hmt || [];
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2016/05/17/springboot4/" ><i class="fa fa-file-o"></i>Spring Boot Tutorial 3 (多环境...</a>
+      </li>
+    
+      <li>
         <a href="/2016/05/17/springboot3/" ><i class="fa fa-file-o"></i>Spring Boot Tutorial 3 (使用@...</a>
       </li>
     
@@ -373,10 +427,6 @@ var _hmt = _hmt || [];
     
       <li>
         <a href="/2016/05/14/springboot1/" ><i class="fa fa-file-o"></i>Spring Boot Tutorial 1 (@Sp...</a>
-      </li>
-    
-      <li>
-        <a href="/2016/05/13/hello-world/" ><i class="fa fa-file-o"></i>Hello World</a>
       </li>
     
   </ul>

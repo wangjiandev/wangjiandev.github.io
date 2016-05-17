@@ -6,21 +6,16 @@
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
   
-  <title>Spring Boot Tutorial 3 (使用@Async实现异步调用) | Evasi0n</title>
+  <title>Spring Boot Tutorial 3 (多环境配置) | Evasi0n</title>
   <meta name="author" content="王健">
   
-  <meta name="description" content="必须在SpringBootApplication类中注解声明,启用异步调用
-
-12345@SpringBootApplication@EnableAsyncpublic class Application &amp;#123;&amp;#125;
-
-使用@Async注解就能简单的将原来的同步函数变为异步函数
-
-12">
+  <meta name="description" content="多环境配置我们在开发Spring Boot应用时，通常同一套程序会被应用和安装到几个不同的环境，比如：开发、测试、生产等。其中每个环境的数据库地址、服务器端口等等配置都会不同，如果在为不同环境打包时都要频繁修改配置文件的话，那必将是个非常繁琐且容易发生错误的事。
+对于多环境的配置，各种项目构建工具或">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Spring Boot Tutorial 3 (使用@Async实现异步调用)"/>
+  <meta property="og:title" content="Spring Boot Tutorial 3 (多环境配置)"/>
   <meta property="og:site_name" content="Evasi0n"/>
 
   
@@ -124,7 +119,7 @@ var _hmt = _hmt || [];
 
 	
 		<div class="page-header">
-			<h1> Spring Boot Tutorial 3 (使用@Async实现异步调用)</h1>
+			<h1> Spring Boot Tutorial 3 (多环境配置)</h1>
 		</div>
 	
 
@@ -141,14 +136,29 @@ var _hmt = _hmt || [];
 	<div class="mypage">		
 	  		
 
-	  <ul>
-<li>必须在SpringBootApplication类中注解声明,启用异步调用</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableAsync</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+	  <h2 id="多环境配置"><a href="#多环境配置" class="headerlink" title="多环境配置"></a>多环境配置</h2><p>我们在开发Spring Boot应用时，通常同一套程序会被应用和安装到几个不同的环境，比如：开发、测试、生产等。其中每个环境的数据库地址、服务器端口等等配置都会不同，如果在为不同环境打包时都要频繁修改配置文件的话，那必将是个非常繁琐且容易发生错误的事。</p>
+<p>对于多环境的配置，各种项目构建工具或是框架的基本思路是一致的，通过配置多份不同环境的配置文件，再通过打包命令指定需要打包的内容之后进行区分打包，Spring Boot也不例外，或者说更加简单。</p>
+<blockquote>
+<p>在Spring Boot中多环境配置文件名需要满足<a href="">application-{profile}.properties</a>的格式，其中<a href="">{profile}</a> 对应你的环境标识，比如：</p>
 <ul>
-<li>使用@Async注解就能简单的将原来的同步函数变为异步函数</li>
+<li>application-dev.properties：开发环境</li>
+<li>application-test.properties：测试环境</li>
+<li>application-prod.properties：生产环境</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Task</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Async</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doTaskOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Async</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doTaskTwo</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>至于哪个具体的配置文件会被加载，需要在application.properties文件中通过spring.profiles.active属性来设置，其值对应{profile}值。</p>
+<blockquote>
+<p>如：<a href="">spring.profiles.active=test</a>就会加载<a href="">application-test.properties</a>配置文件内容</p>
+</blockquote>
+<p>application.properties设置</p>
+<blockquote>
+<p>spring.profiles.active=dev 默认以dev环境设置</p>
+<ul>
+<li>java -jar xxx.jar 默认的开发环境（dev）</li>
+<li>java -jar xxx.jar –spring.profiles.active=test 测试环境的配置（test）</li>
+<li>java -jar xxx.jar –spring.profiles.active=prod 生产环境的配置（prod）</li>
+</ul>
+</blockquote>
 	  
 	</div>
 
@@ -158,13 +168,12 @@ var _hmt = _hmt || [];
 
     
     
-    <a href="/2016/05/17/springboot4/" type="button" class="btn btn-default"><i
-                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    <a type="button" class="btn btn-default disabled"><i class="fa fa-arrow-circle-o-left"></i>上一页</a>
     
 
     <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
     
-    <a href="/2016/05/17/springboot2/" type="button" class="btn btn-default ">下一页<i
+    <a href="/2016/05/17/springboot3/" type="button" class="btn btn-default ">下一页<i
                 class="fa fa-arrow-circle-o-right"></i></a>
     
 
@@ -201,14 +210,6 @@ var _hmt = _hmt || [];
     
 
 	<!-- tags -->
-	
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
-    <ul id="tags" class="tag_box list-unstyled collapse in">	  
-	    
-  <li><a href="/tags/spring-boot/">spring boot<span>3</span></a></li>
-    </ul>
-	</div>
 		
 
 	<!-- toc -->
