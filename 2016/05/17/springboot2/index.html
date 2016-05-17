@@ -6,15 +6,19 @@
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
   
-  <title>Spring Boot Tutorial 1 (@SpringBootApplication) | Evasi0n</title>
+  <title>Spring Boot Tutorial 2 (使用@Scheduled创建定时任务) | Evasi0n</title>
   <meta name="author" content="王健">
   
-  <meta name="description" content="@SpringBootApplication12345678910111213141516@Target(ElementType.TYPE)@Retention(RetentionPolicy.RUNTIME)@Documented@Inherited@Configuration@EnableAut">
+  <meta name="description" content="使用spring boot 做一些定时任务，例如定时给平台注册会员发送推荐邮件。
+创建定时任务
+首先，必须在SpringBootApplication类中注解声明启用定时任务
+
+12345@SpringBootApplication@EnableSchedulingpublic class Appl">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Spring Boot Tutorial 1 (@SpringBootApplication)"/>
+  <meta property="og:title" content="Spring Boot Tutorial 2 (使用@Scheduled创建定时任务)"/>
   <meta property="og:site_name" content="Evasi0n"/>
 
   
@@ -118,7 +122,7 @@ var _hmt = _hmt || [];
 
 	
 		<div class="page-header">
-			<h1> Spring Boot Tutorial 1 (@SpringBootApplication)</h1>
+			<h1> Spring Boot Tutorial 2 (使用@Scheduled创建定时任务)</h1>
 		</div>
 	
 
@@ -135,8 +139,25 @@ var _hmt = _hmt || [];
 	<div class="mypage">		
 	  		
 
-	  <h2 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="@SpringBootApplication"></a>@SpringBootApplication</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootApplication &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * Exclude specific auto-configuration classes such that they will never be applied.</span><br><span class="line">     * <span class="doctag">@return</span> the classes to exclude</span><br><span class="line">     */</span></span><br><span class="line">    Class&lt;?&gt;[] exclude() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>@Configuration : 表示Application作为sprig配置文件存在<br>@EnableAutoConfiguration: 启动spring boot内置的自动配置<br>@ComponentScan : 扫描bean，路径为Application类所在package以及package下的子路径</p>
+	  <p>使用spring boot 做一些定时任务，例如定时给平台注册会员发送推荐邮件。</p>
+<h2 id="创建定时任务"><a href="#创建定时任务" class="headerlink" title="创建定时任务"></a>创建定时任务</h2><ul>
+<li>首先，必须在SpringBootApplication类中注解声明启用定时任务</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableScheduling</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后，具体实现类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScheduledTasks</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SimpleDateFormat dateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Scheduled</span>(fixedRate = <span class="number">6000</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reportCurrentTime</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"当前时间："</span> + dateFormat.format(<span class="keyword">new</span> Date()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li><p>@Scheduled(fixedRate = 5000) ：上一次开始执行时间点之后5秒再执行</p>
+</li>
+<li><p>@Scheduled(fixedDelay = 5000) ：上一次执行完毕时间点之后5秒再执行</p>
+</li>
+<li><p>@Scheduled(initialDelay=1000, fixedRate=5000) ：第一次延迟1秒后执行，之后按fixedRate的规则每5秒执行一次</p>
+</li>
+<li><p>@Scheduled(cron=”<em>/5 </em> <em> </em> <em> </em>“) ：通过cron表达式定义规则</p>
+</li>
+</ul>
 	  
 	</div>
 
@@ -146,13 +167,13 @@ var _hmt = _hmt || [];
 
     
     
-    <a href="/2016/05/15/nodejs/" type="button" class="btn btn-default"><i
+    <a href="/2016/05/17/springboot3/" type="button" class="btn btn-default"><i
                 class="fa fa-arrow-circle-o-left"></i> 上一页</a>
     
 
     <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
     
-    <a href="/2016/05/13/hello-world/" type="button" class="btn btn-default ">下一页<i
+    <a href="/2016/05/15/nodejs/" type="button" class="btn btn-default ">下一页<i
                 class="fa fa-arrow-circle-o-right"></i></a>
     
 
@@ -181,7 +202,7 @@ var _hmt = _hmt || [];
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2016-05-14 
+	2016-05-17 
 	</div>
 	
 
